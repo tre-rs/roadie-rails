@@ -44,7 +44,9 @@ module Roadie
       end
 
       def asset_prefix
-        ::Rails.application.try(:config).try(:assets).try(:prefix) || "/assets"
+        relative_url_root = ::Rails.application.try(:config).try(:relative_url_root) || ""
+        assets_prefix     = ::Rails.application.try(:config).try(:assets).try(:prefix) || "/assets"
+        relative_url_root + assets_prefix
       end
     end
   end
